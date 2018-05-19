@@ -1,0 +1,17 @@
+#logo{
+    height: 80px;
+}
+#title-name{
+    margin: 10px;
+    color : whitesmoke;
+}
+
+.color-item{
+    color : whitesmoke;
+}
+.nav-mycolor{
+    background-color: black;
+}
+.navbar-nav.ml-auto li a{
+    color:wheat;
+}
