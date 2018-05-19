@@ -30,9 +30,18 @@
                         KPI
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">1</a>
-                        <a class="dropdown-item" href="#">2</a>
-                        <a class="dropdown-item" href="#">3</a>
+                        <a class="dropdown-item" href="nowyear.php">
+                        <?php
+                        $year = date("Y");
+                        echo "ปี $year";
+                        ?></a>
+                        <a class="dropdown-item" href="lastyear.php">
+                        <?php
+                        $year = date("Y");
+                        $year = $year-1;
+                        echo "ปี $year";
+                        ?></a>
+                        <a class="dropdown-item" href="twoyearback.php">ปีอื่นๆ</a>
                 </li>
                 <li class="nav-item color-item">
                     <a class="nav-link" href="#">เอกสารของท่าน</a>
