@@ -1,9 +1,9 @@
 <?php include("personalheader.php"); ?>
 <nav class="secondary">
-   
+
         <span style="color:#000000">กรอกคะแนน</span>
         <span style="color:#a19668">*กรุณากรอกคะแนนลงในช่องผลงาน</span>
-    
+
 </nav>
 <div class="container">
 	<div class="row">
@@ -30,14 +30,14 @@
 		                <th width="10%" stlye="width:200px;">เป้าหมาย</th>
 		                <th width="10%">ผลงาน</th>
 		                <th width="10%">&nbsp;&nbsp;&nbsp;&nbsp;สถานะ</th>
-		                
+
 		            </tr>
 		        </thead>
 
 
 		        <tbody>
 			      <?php
-			        include('connect.php');
+			        include('connect2.php');
 			        $sql = "SELECT * FROM kpi;";
 			      	$result = mysqli_query($cn,$sql);
 			      	$i = 0;
@@ -48,13 +48,30 @@
 			      		$OBJECT  = $row["OBJECT"];
 			      		$PORT = $row["PORT"];
 			      		$STATUS  = $row["STATUS"];
+                $colorRED = RED;
+                $colorORANGE = ORANGE;
+                $colorGREEN = GREEN;
+                $color;
+                $Statusname;
+                if($STATUS==$colorRED){
+                  $color = "rgb(220, 53, 69)";
+                  $Statusname = "ยังไม่ครบ";
+                  }
+                else if($STATUS==$colorGREEN){
+                  $color = "rgb(40, 167, 69)";
+                  $Statusname = "ส่งครบ";
+                }
+                else{
+                  $color = "rgb(255,193, 7)";
+                  $Statusname = "ยังไม่รู้สถานะ";
+                }
 			      		echo "
 			            <tr>
 			              <td>$id</td>
 			              <td>$Criteria</td>
 			              <td>$OBJECT</td>
 			              <td>$PORT</td>
-			              <td>$STATUS</td>
+			              <td style=\"background-color:$color;\">$Statusname</td>
 			            </tr>
 			      		";
 			      	}
@@ -68,7 +85,7 @@
 <!--
 		        <tbody>
 		            <tr class="success">
-		                
+
 		                <td>1</td>
 		                <td>ผลิตบัณฑิตที่พึ่งประสงค์</td>
 		                <td>5</td>
@@ -80,10 +97,10 @@
       					</td>
       					<td><button type="button" class="btn btn-primary">ส่ง</button></td>
 		                <td class="status">ส่งครบ</td>
-		            
+
 		            </tr>
 		            <tr class="success">
-		                
+
 		                <td>2</td>
 		                <td>ร้อยละของบัณฑิตระดับปริญญาตรี</td>
 		                <td>100</td>
@@ -93,10 +110,10 @@
       					</div></td>
       					<td><button type="button" class="btn btn-primary">ส่ง</button></td>
 		                <td class="status">ส่งครบ</td>
-		                
+
 		            </tr>
 		            <tr class="warning">
-		                
+
 		                <td>3</td>
 		                <td>จำนวนงานวิจัย หรืองานออกแบบ หรืองานสร้างสรรค์ หรือสิ่งประดิษฐ์ ของนักศึกษาที่จะได้รับการตีพิมพ์</td>
 		                <td>10</td>
@@ -107,10 +124,10 @@
 		                </td>
 		                <td><button type="button" class="btn btn-primary">ส่ง</button></td>
 		                <td class="status">Offline</td>
-		               
+
 		            </tr>
 		            <tr class="danger">
-		                
+
 		                <td>4</td>
 		                <td>อัตราผลตอบแทนเฉลี่ยของบัณฑิตเมื่อเทียบกับค่ามาตรฐานกระทรวงแรงงาน</td>
 		                <td>20</td>
@@ -121,10 +138,10 @@
 		                </td>
 		                <td><button type="button" class="btn btn-primary">ส่ง</button></td>
 		                <td class="status">ยังไม่ครบ</td>
-		                
+
 		            </tr>
 		            <tr class="warning">
-		                
+
 		                <td>5</td>
 		                <td>ร้อยละของจำนวนโครงการบริการวิชาการที่แก้ไขปัญหาสังคม หรือสร้างความเข้มแข็งให้สังคม </td>
 		                <td>30</td>
@@ -133,7 +150,7 @@
       					</div></td>
       					<td><button type="button" class="btn btn-primary">ส่ง</button></td>
 		                <td class="status">Offline</td>
-		                
+
 		            </tr>
 		        -->
 		        </tbody>
@@ -141,4 +158,4 @@
 		</div>
 	</div>
 </div>
-<?php include("process/footer.php"); ?>
+<?php ?>

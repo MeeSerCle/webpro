@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-md nav-mycolor">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <img id="logo" src="../picc/Logo.png" alt="">
-            <h3 id="title-name">ระบบติดตามแผนงาน ​<br>คณะวิทยาศาสตร์ สจล.</h3>  
+            <h3 id="title-name">ระบบติดตามแผนงาน ​<br>คณะวิทยาศาสตร์ สจล.</h3>
         </div>
         <!-- <div class="mx-auto order-0">
             <a class="navbar-brand mx-auto" href="#"></a>
@@ -30,18 +30,23 @@
                         KPI
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="nowyear.php">
-                        <?php
-                        $year = date("Y");
-                        echo "ปี $year";
-                        ?></a>
-                        <a class="dropdown-item" href="lastyear.php">
-                        <?php
-                        $year = date("Y");
-                        $year = $year-1;
-                        echo "ปี $year";
-                        ?></a>
-                        <a class="dropdown-item" href="twoyearback.php">ปีอื่นๆ</a>
+                      <?php
+                      include("connect2.php");
+                      if ($cn->connect_error) {
+                          die("Connection with the database failed: </br>" . $cn->connect_error);
+                      }
+                      if($result = $cn->query('SHOW TABLES')){
+                        $i=0;
+                        while($row = mysqli_fetch_array($result)){
+                          $tables[] = $row[0];
+                        }
+                      }
+                      foreach($tables as $key => $value)
+                      {
+         			      		echo '<a class="dropdown-item" href="#">'.$value.'</a>';
+                      }
+                      ?>
+                    </div>
                 </li>
                 <li class="nav-item color-item">
                     <a class="nav-link" href="#">เอกสารของท่าน</a>

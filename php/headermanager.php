@@ -25,18 +25,32 @@
         </div> -->
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         KPI
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">1</a>
-                        <a class="dropdown-item" href="#">2</a>
-                        <a class="dropdown-item" href="#">3</a>
+                      <?php
+                      include("connect2.php");
+                      if ($cn->connect_error) {
+                          die("Connection with the database failed: </br>" . $cn->connect_error);
+                      }
+                      if($result = $cn->query('SHOW TABLES')){
+                        $i=0;
+                        while($row = mysqli_fetch_array($result)){
+                          $tables[] = $row[0];
+                        }
+                      }
+                      foreach($tables as $key => $value)
+                      {
+         			      		echo '<a class="dropdown-item" href="#">'.$value.'</a>';
+                      }
+                      ?>
+                    </div>
                 </li>
-                <li class="nav-item color-item">
+                <!-- <li class="nav-item color-item">
                     <a class="nav-link" href="#">ภาควิชา</a>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             บัญชีของท่าน

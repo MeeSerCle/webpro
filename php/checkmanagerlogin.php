@@ -18,7 +18,7 @@ session_start();
   }else{
     $_SESSION["UserID"] = $username;
     session_write_close();
-    header('Location:');
+    header('Location:managerindex.php');
   }
   ?>
  
